@@ -23,6 +23,14 @@ const server = global.server = loopback();
 
 //
 // Launch the server
+// Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
+// user agent is not known.
+// -----------------------------------------------------------------------------
+global.navigator = global.navigator || {};
+global.navigator.userAgent = global.navigator.userAgent || 'all';
+
+//
+// Register Node.js middleware
 // -----------------------------------------------------------------------------
 server.start = function() {
   //

@@ -14,6 +14,17 @@ import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import DefaultTheme from '../../constants/DefaultTheme';
+
+//Needed for onTouchTap 
+//Can go away when react 1.0 release 
+//Check this repo: 
+//https://github.com/zilverline/react-tap-event-plugin 
+injectTapEventPlugin();
+
 class App extends Component {
 
   static propTypes = {
@@ -32,6 +43,7 @@ class App extends Component {
     onSetTitle: PropTypes.func.isRequired,
     onSetMeta: PropTypes.func.isRequired,
     onPageNotFound: PropTypes.func.isRequired,
+    muiTheme: React.PropTypes.object,
   };
 
   getChildContext() {
@@ -41,6 +53,7 @@ class App extends Component {
       onSetTitle: context.onSetTitle || emptyFunction,
       onSetMeta: context.onSetMeta || emptyFunction,
       onPageNotFound: context.onPageNotFound || emptyFunction,
+      muiTheme: ThemeManager.getMuiTheme(DefaultTheme),
     };
   }
 
@@ -55,11 +68,8 @@ class App extends Component {
 
   render() {
     return !this.props.error ? (
-      <div>
-        <Header />
+      <div className={s.root}>
         {this.props.children}
-        <Feedback />
-        <Footer />
       </div>
     ) : this.props.children;
   }

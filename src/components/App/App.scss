@@ -23,6 +23,19 @@ html {
   font-size: 1em; /* ~16px; */
   font-family: $font-family-base;
   line-height: 1.375; /* ~22px */
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.root {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 /*

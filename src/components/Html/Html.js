@@ -31,6 +31,9 @@ class Html extends Component {
   };
 
   render() {
+    var divStyle = {
+      height: '100%'
+    };
     return (
       <html className="no-js" lang="">
       <head>
@@ -43,7 +46,7 @@ class Html extends Component {
         <style id="css" dangerouslySetInnerHTML={{ __html: this.props.css }} />
       </head>
       <body>
-        <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} />
+        <div id="app" style={divStyle} dangerouslySetInnerHTML={{ __html: this.props.body }} />
         <script src={this.props.entry}></script>
         <script dangerouslySetInnerHTML={{ __html: trackingCode }} />
         <script src="https://www.google-analytics.com/analytics.js" async defer />

@@ -10,32 +10,14 @@
 import React, { Component, PropTypes } from 'react';
 
 import Card from 'material-ui/lib/card/card';
-import CardActions from 'material-ui/lib/card/card-actions';
 import CardText from 'material-ui/lib/card/card-text';
-
-import TextField from 'material-ui/lib/text-field';
-import Checkbox from 'material-ui/lib/checkbox';
-import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import ActionInput from 'material-ui/lib/svg-icons/action/input';
 
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './LoginPage.scss';
 
-import Link from '../Link';
+import LoginForm from '../LoginForm';
 
-const title = 'Log In';
-
-const styles = {
-  button: {
-    margin: 12,
-  },
-  padding: {
-    paddingTop: 16
-  }
-};
+const title = 'ログイン';
 
 class LoginPage extends Component {
 
@@ -54,28 +36,7 @@ class LoginPage extends Component {
           <h2 className={s.logo}>Lively</h2>
           <Card>
             <CardText>
-              <form className={s.login}>
-                <TextField
-                  floatingLabelText="アカウント名"
-                  type="text"
-                />
-                <TextField
-                  floatingLabelText="パスワード"
-                  type="password"
-                />
-                <Checkbox
-                  label="ログイン状態を維持する"
-                  style={styles.padding}
-                />
-                <CardActions className={s.loginAction}>
-      <RaisedButton
-      label="ログイン"
-      labelPosition="before"
-      primary={true}
-      style={styles.button}
-      />
-                </CardActions>
-              </form>
+              <LoginForm />
             </CardText>
           </Card>
         </div>

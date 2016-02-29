@@ -14,6 +14,12 @@ export const port = process.env.PORT || 5000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
 export const loopbackRoot = 'src/loopback';
 export const googleAnalyticsId = 'UA-XXXXX-X';
+export const apiDomain = 'http://localhost:3000';
+export const apiRoot = `${apiDomain}/rest-api`;
+export const jsonHeaders = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+};
 
 export const analytics = {
 

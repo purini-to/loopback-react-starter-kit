@@ -17,12 +17,22 @@ import TextField from 'material-ui/lib/text-field';
 import Checkbox from 'material-ui/lib/checkbox';
 import RaisedButton from 'material-ui/lib/raised-button';
 
+import Colors from 'material-ui/lib/styles/colors';
+
+import { Form } from 'formsy-react';
+
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './LoginForm.scss';
 
 import authService from '../../service/AuthService';
 
 import LoginStore from '../../stores/LoginStore';
+
+const styles = {
+  errorStyle: {
+    color: Colors.orange600,
+  },
+};
 
 // ログインフォーム
 class LoginForm extends Component {
@@ -35,6 +45,7 @@ class LoginForm extends Component {
       userName: '',
       password: '',
       loggedKeep: false,
+      canSubmit: false
     };
   }
   
@@ -44,22 +55,34 @@ class LoginForm extends Component {
     authService.login(this.state.userName, this.state.password);
   }
   
+  enableButton() {
+    this.setState({canSubmit: true});
+  }
+  
+  disableButton() {
+    this.setState({canSubmit: false});
+  }
+  
   /**
    * 描画処理
    * @returns {object} ReactViewコンポーネント
    */
   render() {
     return (
-      <form className={s.login} onSubmit={this.login.bind(this)}>
+      <Form className={s.login} onSubmit={this.login.bind(this)}>
         <TextField
           floatingLabelText="アカウント名"
           type="text"
           valueLink={this.linkState('userName')}
+          errorText=""
+          errorStyle={styles.errorStyle}
         />
         <TextField
           floatingLabelText="パスワード"
           type="password"
           valueLink={this.linkState('password')}
+          errorText=""
+          errorStyle={styles.errorStyle}
         />
         <Checkbox
           label="ログイン状態を維持する"
@@ -73,9 +96,10 @@ class LoginForm extends Component {
             primary={true}
             className={s.btnLogin}
             type="submit"
+            disabled={!this.state.canSubmit}
           />
         </CardActions>
-      </form>
+              </Form>
     );
   }
 }

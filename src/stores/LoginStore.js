@@ -10,6 +10,7 @@ class LoginStore extends BaseStore {
     // First we register to the Dispatcher to listen for actions.
     this.subscribe(() => this._registerToActions.bind(this))
     this._user = null;
+    this._error = null;
   }
 
   _registerToActions(action) {
@@ -26,6 +27,10 @@ class LoginStore extends BaseStore {
   // Just getters for the properties it got from the action.
   get user() {
     return this._user;
+  }
+  
+  get error() {
+    return this._error;
   }
 
   isLoggedIn() {
